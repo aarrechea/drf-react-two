@@ -28,7 +28,7 @@ DEBUG = os.environ.get("ENV")
 
 
 # Allowed hosts
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(",")
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'https://company-assessments-85bd491e25c3.herokuapp.com').split(",")
 
 
 # Application definition ----
@@ -146,8 +146,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = 'static/'
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_FILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# Django Heroku settings ----
+django_heroku.settings(locals()) 
 
 
 # Default primary key field type
@@ -175,8 +179,7 @@ REST_FRAMEWORK = {
 GEOIP_PATH = BASE_DIR / 'geoip'
 
 
-# Django Heroku settings ----
-django_heroku.settings(locals()) 
+
 
 
 # Cors headers --------------
