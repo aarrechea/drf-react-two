@@ -1,4 +1,5 @@
 # Imports
+import environ
 import os
 import django_heroku
 from pathlib import Path
@@ -15,20 +16,33 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("ENV")
+#DEBUG = os.environ.get("ENV")
+
+# False if not in os.environ because of casting above
+DEBUG = env('DEBUG')
 
 
 # Allowed hosts
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'https://company-assessments-85bd491e25c3.herokuapp.com').split(",")
+ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', 'https://company-assessments-85bd491e25c3.herokuapp.com').split(",")
 
 
 # Application definition ----
@@ -210,7 +224,7 @@ CORS_ALLOW_METHODS = (
 #SESSION_COOKIE_SAMESITE = 'None'
 #CSRF_COOKIE_SAMESITE = 'None'
 
-CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ALLOWED_ORIGINS").split(",")
+CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS").split(",")
 
 print("cors: ", CORS_ALLOWED_ORIGINS)
 
