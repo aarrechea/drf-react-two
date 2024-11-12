@@ -28,7 +28,7 @@ DEBUG = os.environ.get("ENV")
 
 
 # Allowed hosts
-ALLOWED_HOSTS = os.environ['DJANGO_ALLOWED_HOSTS'].split(",")
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(",")
 
 
 # Application definition ----
@@ -108,11 +108,11 @@ WSGI_APPLICATION = 'CompanyRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['DATABASE_NAME'],
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST':os.environ['DATABASE_HOST'],
-        'PORT':os.environ['DATABASE_PORT'],
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST':os.environ.get('DATABASE_HOST'),
+        'PORT':os.environ.get('DATABASE_PORT'),
     }
 }
 
