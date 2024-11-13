@@ -3,7 +3,6 @@ import os
 import django_heroku
 from pathlib import Path
 from dotenv import load_dotenv
-from decouple import config
 
 
 
@@ -20,15 +19,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = config("SECRET_KEY", default="django-insecure-ii@h9lsa#%3+$tqvys-d0rma0k47ia5e20o94okam$)983y39q")
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=True, cast=bool)
+DEBUG = os.getenv("DEBUG")
 
 
 # Allowed hosts
-ALLOWED_HOSTS = ['https://company-assessments-85bd491e25c3.herokuapp.com', 'http127.0.0.1', 'http://localhost']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 
 
 # Application definition ----
@@ -105,14 +104,25 @@ WSGI_APPLICATION = 'CompanyRest.wsgi.application'
 
 
 # Databases -----------------
+""" DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("DATABASE_NAME", 'd9t51qosamg0dv'), 
+        'USER': os.getenv("DATABASE_USER", default="u6b5t400ij4ji1"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD", 'pec824a22933f50289136a47c9e4546e80851503a66db43f3f195043bbd603865'), 
+        'HOST': os.getenv("DATABASE_HOST", 'c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com'),  
+        'PORT': os.getenv("DATABASE_PORT", '5432'), 
+    }
+} """
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config("DATABASE_NAME", 'd9t51qosamg0dv'), 
-        'USER': config("DATABASE_USER", default="u6b5t400ij4ji1"),
-        'PASSWORD': config("DATABASE_PASSWORD", 'pec824a22933f50289136a47c9e4546e80851503a66db43f3f195043bbd603865'), 
-        'HOST': config("DATABASE_HOST", 'c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com'),  
-        'PORT': config("DATABASE_PORT", '5432'), 
+        'NAME': os.getenv("DATABASE_NAME"), 
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT"), 
     }
 }
 
@@ -210,10 +220,10 @@ CORS_ALLOW_METHODS = (
 #SESSION_COOKIE_SAMESITE = 'None'
 #CSRF_COOKIE_SAMESITE = 'None'
 
-CORS_DEFAULT_ORIGINS = 'https://react-standalone-app-465feb572a17.herokuapp.com,http://localhost:3000,http://127.0.0.1:3000'
+
 
 #CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default=CORS_DEFAULT_ORIGINS ).split(",")
-CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS").split(",")
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS").split(",")
 
 #CSRF_COOKIE_NAME = 'XSRF-TOKEN'
 #CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
