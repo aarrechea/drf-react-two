@@ -6,7 +6,7 @@ from apps.abstract.models import AbstractModel
 
 
 """ User manager """
-class UserManager(BaseUserManager, models.Manager):
+class UserManager(BaseUserManager, models.Manager):    
     def create_user(self, email, password=None, **kwargs):        
         if email is None:
             raise TypeError("User must have an email")
@@ -19,25 +19,21 @@ class UserManager(BaseUserManager, models.Manager):
         
         return user
         
-        
-        
-    def create_superuser(self, request, email, password, **kwargs):
-        if request.user.is_superuser:
-            if email is None:
-                raise TypeError("User must have an email")
-            if password is None:
-                raise TypeError("User must have a password")
             
-            user = self.create_user(email, password, **kwargs)
-            user.is_superuser = True
-            user.is_staff = True        
-            user.user_type = 1
-            user.save(using=self._db)
-            
-            return user
-        else:
-            raise TypeError("Only superuser can create superuser")
-
+    def create_superuser(self, email, password, **kwargs):        
+        if email is None:
+            raise TypeError("User must have an email")
+        if password is None:
+            raise TypeError("User must have a password")
+        
+        user = self.create_user(email, password, **kwargs)
+        user.is_superuser = True
+        user.is_staff = True        
+        user.user_type = 1
+        user.save(using=self._db)
+        
+        return user
+        
 
 
 """ User model """
