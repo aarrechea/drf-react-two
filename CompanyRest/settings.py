@@ -210,7 +210,9 @@ CORS_ALLOW_METHODS = (
 #SESSION_COOKIE_SAMESITE = 'None'
 #CSRF_COOKIE_SAMESITE = 'None'
 
-CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", 'https://react-standalone-app-465feb572a17.herokuapp.com','http://localhost:3000,http://127.0.0.1:3000').split(",")
+CORS_DEFAULT_ORIGINS = 'https://react-standalone-app-465feb572a17.herokuapp.com','http://localhost:3000,http://127.0.0.1:3000'
+
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default=CORS_DEFAULT_ORIGINS ).split(",")
 
 
 #CSRF_COOKIE_NAME = 'XSRF-TOKEN'
