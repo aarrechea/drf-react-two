@@ -19,8 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", default="django-insecure-ii@h9lsa#%3+$tqvys-d0rma0k47ia5e20o94okam$)983y39q")
-
+#SECRET_KEY = config("SECRET_KEY", default="django-insecure-ii@h9lsa#%3+$tqvys-d0rma0k47ia5e20o94okam$)983y39q")
+SECRET_KEY = config("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -212,8 +212,8 @@ CORS_ALLOW_METHODS = (
 
 CORS_DEFAULT_ORIGINS = 'https://react-standalone-app-465feb572a17.herokuapp.com,http://localhost:3000,http://127.0.0.1:3000'
 
-CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default=CORS_DEFAULT_ORIGINS ).split(",")
-
+#CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default=CORS_DEFAULT_ORIGINS ).split(",")
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS").split(",")
 
 #CSRF_COOKIE_NAME = 'XSRF-TOKEN'
 #CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
