@@ -9,7 +9,7 @@ from apps.user.models import User
 
 """ User viewset """
 class UserViewSet(AbstractViewSet):
-    http_method_names = ('patch', 'get')
+    http_method_names = ('patch', 'get', 'post')
     permission_classes = (AllowAny, )
     serializer_class = UserSerializer
     

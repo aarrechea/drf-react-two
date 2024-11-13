@@ -20,7 +20,7 @@ class UserManager(BaseUserManager, models.Manager):
         return user
         
             
-    def create_superuser(self, email, password, **kwargs):        
+    """ def create_superuser(self, email, password, **kwargs):        
         if email is None:
             raise TypeError("User must have an email")
         if password is None:
@@ -32,7 +32,7 @@ class UserManager(BaseUserManager, models.Manager):
         user.user_type = 1
         user.save(using=self._db)
         
-        return user
+        return user """
         
 
 
