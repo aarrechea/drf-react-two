@@ -61,7 +61,8 @@ class EvaluationsViewSet(AbstractViewSet):
                         form_number = item.order,
                         order = item.order,
                         evaluation = maxId[0],
-                        relation_tree = item
+                        relation_tree = item,
+                        element_type = item.element.element_type
                     )
                     array.append(evaluation_score)                    
                         
@@ -325,3 +326,10 @@ class DataModelViewSet(AbstractViewSet):
         return Response({'updated':'updated'})
     
 
+
+""" Evaluations scores viewset """
+class EvaluationScoreViewSet(AbstractViewSet):
+    http_method_names = ['get', 'post', 'put', 'delete']
+    permission_classes = (UserPermission, )
+    serializer_class = EvaluationScoreSerializer
+    queryset = EvaluationScore.objects.all()

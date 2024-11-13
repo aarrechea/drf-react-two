@@ -62,6 +62,7 @@ class EvaluationScore(models.Model):
     first_score = models.IntegerField(default=0) # original score
     form_number = models.IntegerField(default=0)
     order = models.SmallIntegerField(default=0)
+    element_type = models.IntegerField(default=0)
     element = models.ForeignKey(Element, on_delete=models.CASCADE, related_name='element_related')
     evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, related_name='evaScore')
     relation_tree = models.ForeignKey(RelationTree, on_delete=models.CASCADE, related_name='relation_tree_related')

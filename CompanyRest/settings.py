@@ -107,11 +107,11 @@ WSGI_APPLICATION = 'CompanyRest.wsgi.application'
 """ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("DATABASE_NAME", 'd9t51qosamg0dv'), 
-        'USER': os.getenv("DATABASE_USER", default="u6b5t400ij4ji1"),
-        'PASSWORD': os.getenv("DATABASE_PASSWORD", 'pec824a22933f50289136a47c9e4546e80851503a66db43f3f195043bbd603865'), 
-        'HOST': os.getenv("DATABASE_HOST", 'c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com'),  
-        'PORT': os.getenv("DATABASE_PORT", '5432'), 
+        'NAME': "intracen_dos",
+        'USER': 'postgres',
+        'PASSWORD': 'postgres', 
+        'HOST': '127.0.0.1', 
+        'PORT': '5432', 
     }
 } """
 

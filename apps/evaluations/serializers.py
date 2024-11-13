@@ -71,8 +71,8 @@ class MainProductsSerializer(AbstractSerializer):
         
 """ Evaluation score serializer """        
 class EvaluationScoreSerializer(AbstractSerializer):
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)        
+    def to_representation(self, instance):        
+        rep = super().to_representation(instance)                
         element = Element.objects.get(id=rep['element'])
         rep['element_type'] = element.element_type
         rep['element_name_display'] = element.name
@@ -82,8 +82,8 @@ class EvaluationScoreSerializer(AbstractSerializer):
         
     class Meta:
         model = EvaluationScore
-        fields = ['first_score', 'form_number', 'order', 'element', 'evaluation', 'relation_tree', 
-                'final_score', 'percentage_score']
+        fields = ['id', 'first_score', 'form_number', 'order', 'element', 'evaluation', 'relation_tree', 
+                'final_score', 'percentage_score', 'element_type']
                                 
 
 

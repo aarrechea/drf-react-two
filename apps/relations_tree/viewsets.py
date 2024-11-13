@@ -36,9 +36,11 @@ class RelationTreeViewSet(AbstractViewSet):
         
         try:
             eva_scores_to_send = list(relation.evaluation.all()[0].evaScore.all().order_by('form_number').values())
+                                    
         except:
             eva_scores_to_send = {}
-                              
+            
+            
         obj = relation.relation_tree.all().order_by('order').values()        
         obj_list = list(obj)
                 
@@ -66,7 +68,7 @@ class RelationTreeViewSet(AbstractViewSet):
         response = {
             'data':serializer.data,
             'relation_name':relation_name,
-            'eva_scores':eva_scores_to_send #serializer_eva_scores.data
+            'eva_scores': eva_scores_to_send
         }
                                 
         return Response(response)
