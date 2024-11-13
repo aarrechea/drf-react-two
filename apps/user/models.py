@@ -21,7 +21,7 @@ class UserManager(BaseUserManager, models.Manager):
         
         
         
-    def createsuperuser(self, request, email, password, **kwargs):
+    def create_superuser(self, request, email, password, **kwargs):
         if request.user.is_superuser:
             if email is None:
                 raise TypeError("User must have an email")
