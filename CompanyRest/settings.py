@@ -24,11 +24,11 @@ SECRET_KEY = config("SECRET_KEY", default="django-insecure-ii@h9lsa#%3+$tqvys-d0
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = config("DEBUG", default=True, cast=bool)
 
 
 # Allowed hosts
-ALLOWED_HOSTS = ['https://company-assessments-85bd491e25c3.herokuapp.com']
+ALLOWED_HOSTS = ['https://company-assessments-85bd491e25c3.herokuapp.com', 'http127.0.0.1', 'http://localhost']
 
 
 # Application definition ----
@@ -108,11 +108,11 @@ WSGI_APPLICATION = 'CompanyRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config("DATABASE_NAME", False), 
-        'USER': config("DATABASE_USER", default="Secret Key"),
-        'PASSWORD': config("DATABASE_PASSWORD", False), 
-        'HOST': config("DATABASE_HOST", False),  
-        'PORT': config("DATABASE_PORT", False), 
+        'NAME': config("DATABASE_NAME", 'd9t51qosamg0dv'), 
+        'USER': config("DATABASE_USER", default="u6b5t400ij4ji1"),
+        'PASSWORD': config("DATABASE_PASSWORD", 'pec824a22933f50289136a47c9e4546e80851503a66db43f3f195043bbd603865'), 
+        'HOST': config("DATABASE_HOST", 'c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com'),  
+        'PORT': config("DATABASE_PORT", '5432'), 
     }
 }
 
