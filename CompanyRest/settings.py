@@ -1,9 +1,9 @@
 # Imports
-import environ
 import os
 import django_heroku
 from pathlib import Path
 from dotenv import load_dotenv
+from decouple import config
 
 
 
@@ -11,38 +11,24 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-
-# Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY", default="Secret Key")
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = os.environ.get("ENV")
-
-# False if not in os.environ because of casting above
-DEBUG = env('DEBUG')
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 
 # Allowed hosts
-ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', 'https://company-assessments-85bd491e25c3.herokuapp.com').split(",")
+ALLOWED_HOSTS = ['https://company-assessments-85bd491e25c3.herokuapp.com']
 
 
 # Application definition ----
@@ -122,11 +108,11 @@ WSGI_APPLICATION = 'CompanyRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DATABASE_NAME'),
-        'USER': os.environ.get('DATABASE_USER'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST':os.environ.get('DATABASE_HOST'),
-        'PORT':os.environ.get('DATABASE_PORT'),
+        'NAME': config("DATABASE_NAME", False), 
+        'USER': config("DATABASE_USER", default="Secret Key"),
+        'PASSWORD': config("DATABASE_PASSWORD", False), 
+        'HOST': config("DATABASE_HOST", False),  
+        'PORT': config("DATABASE_PORT", False), 
     }
 }
 
@@ -224,9 +210,9 @@ CORS_ALLOW_METHODS = (
 #SESSION_COOKIE_SAMESITE = 'None'
 #CSRF_COOKIE_SAMESITE = 'None'
 
-CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS").split(",")
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", False).split(",")
 
-print("cors: ", CORS_ALLOWED_ORIGINS)
+
 
 
 #CSRF_COOKIE_NAME = 'XSRF-TOKEN'
